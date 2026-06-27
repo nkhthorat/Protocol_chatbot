@@ -1,5 +1,5 @@
-from langchain.prompts import PromptTemplate
-from langchain.chains import RetrievalQA
+from langchain_core.prompts import PromptTemplate
+from langchain_classic.chains import RetrievalQA
 from langchain_groq import ChatGroq
 import os
 from dotenv import load_dotenv
@@ -11,7 +11,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 def get_llm_chain(retriever):
     llm = ChatGroq(
         groq_api_key=GROQ_API_KEY,
-        model_name="llama3-70b-8192"
+        model_name="openai/gpt-oss-120b"
     )
 
     prompt = PromptTemplate(

@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from tqdm.auto import tqdm
 from pinecone import Pinecone, ServerlessSpec
 from langchain_community.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 load_dotenv()
@@ -13,7 +13,7 @@ load_dotenv()
 GOOGLE_API_KEY=os.getenv("GOOGLE_API_KEY")
 PINECONE_API_KEY=os.getenv("PINECONE_API_KEY")
 PINECONE_ENV="us-east-1"
-PINECONE_INDEX_NAME="medicalindex"
+PINECONE_INDEX_NAME="medicalindex1"
 
 os.environ["GOOGLE_API_KEY"]=GOOGLE_API_KEY
 
@@ -30,7 +30,7 @@ existing_indexes=[i["name"] for i in pc.list_indexes()]
 if PINECONE_INDEX_NAME not in existing_indexes:
     pc.create_index(
         name=PINECONE_INDEX_NAME,
-        dimension=768,
+        dimension=3072,
         metric="dotproduct",
         spec=spec
     )
@@ -43,7 +43,7 @@ index=pc.Index(PINECONE_INDEX_NAME)
 # load,split,embed and upsert pdf docs content
 
 def load_vectorstore(uploaded_files):
-    embed_model = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+    embed_model = GoogleGenerativeAIEmbeddings(model="gemini-embedding-001")
     file_paths = []
 
     for file in uploaded_files:
