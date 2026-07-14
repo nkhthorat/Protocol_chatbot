@@ -8,6 +8,16 @@ from routes.ask_question import router as ask_router
 
 app=FastAPI(title="Medical Assistant API",description="API for AI Medical Assistant Chatbot")
 
+
+@app.get("/")
+async def root():
+    return {
+        "message": "Protocol Chatbot API is running",
+        "frontend": "http://127.0.0.1:8501",
+        "docs": "http://127.0.0.1:8001/docs",
+        "endpoints": ["/upload_pdfs/", "/ask/"],
+    }
+
 # CORS Setup
 app.add_middleware(
     CORSMiddleware,

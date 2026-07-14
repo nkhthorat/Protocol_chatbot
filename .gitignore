@@ -8,7 +8,15 @@ wheels/
 
 # Virtual environments
 .venv
+server/list/
 
 # Environment variables
 .env
 .env.*
+
+# OS files
+.DS_Store
+
+# Runtime uploads
+server/uploaded_docs/
+temp_test.pdf

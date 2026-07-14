@@ -1,0 +1,14 @@
+$kind: http-request
+name: upload_pdfs
+url: http://127.0.0.1:8000/upload_pdfs/
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: files
+      src:
+        - /Users/nikhilthorat/Downloads/Nikhil_GOT BAG_cover letter.pdf
+      description: ""
+      disabled: false
+order: 1782555455222
